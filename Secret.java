@@ -43,10 +43,12 @@ public class Secret extends HttpServlet {
 				//gets all the prime numbers
 				List<Integer> primNumbers = new SecretManager().getPrimeNumber(num);			
 				for(Integer i: primNumbers){
-					// check if the secret method is additive
-					if(intf.secret(num + i) != intf.secret(num) + intf.secret(i)){
-						additive = false;
-						break;
+					for(Integer j: primNumbers){
+						// check if the secret method is additive
+						if(intf.secret(i + j) != intf.secret(i) + intf.secret(j)){
+							additive = false;
+							break;
+						}
 					}
 				}
 			}
